@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
+  const handleClick = (response) => {
+    if (window.opener) {
+      window.opener.postMessage(response, "*");
+      window.close();
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Accept or Deny</h1>
+        <button onClick={() => handleClick("accept")}>Accept</button>
+        <button onClick={() => handleClick("deny")}>Deny</button>
       </header>
     </div>
   );
